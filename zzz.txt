@@ -1,0 +1,334 @@
+
+// Query to fetch payment data based on roll number and year
+$sql = "SELECT * FROM payment WHERE `ID` = ?";
+
+// Prepare the statement
+if ($stmt = $con->prepare($sql)) {
+    // Bind the parameters
+    $stmt->bind_param("s", $rollNo);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Get the result
+    $result = $stmt->get_result();
+
+    // Check if the result has rows
+    if ($result->num_rows > 0) {
+        // Fetch data from the result set
+        $row = $result->fetch_assoc();
+
+        // Assign retrieved data to variables
+        $totalAmount = $row["1st_year"];
+        $paymentType = $row["1st_yr_payment_type"];
+        $oneTimePayment = $row["1st_yr_one_time_payment_timestamp"];
+        $oneTimePaymentMode = $row["1st_yr_one_time_payment_method"];
+        $oneTimePaymentTransactionId = $row["1st_yr_one_time_payment_transaction_id"];
+        $firstInstallment = $row["1st_yr_1st_installment"];
+        $firstInstallmentTime = $row["1st_yr_1st_installment_timestamp"];
+        $firstInstallmentPaymentMode = $row["1st_yr_1st_installment_payment_method"];
+        $firstInstallmentTransactionId = $row["1st_yr_1st_installment_transaction_id"];
+        $secondInstallment = $row["1st_yr_2nd_installment"];
+        $secondInstallmentTime = $row["1st_yr_2nd_installment_timestamp"];
+        $secondInstallmentPaymentMode = $row["1st_yr_2nd_installment_payment_method"];
+        $secondInstallmentTransactionId = $row["1st_yr_2nd_installment_transaction_id"];
+        $thirdInstallment = $row["1st_yr_3rd_installment"];
+        $thirdInstallmentTime = $row["1st_yr_3rd_installment_timestamp"];
+        $thirdInstallmentPaymentMode = $row["1st_yr_3rd_installment_payment_method"];
+        $thirdInstallmentTransactionId = $row["1st_yr_3rd_installment_transaction_id"];
+        $forthInstallment = $row["1st_yr_4th_installment"];
+        $forthInstallmentTime = $row["1st_yr_4th_installment_timestamp"];
+        $forthInstallmentPaymentMode = $row["1st_yr_4th_installment_payment_method"];
+        $forthInstallmentTransactionId = $row["1st_yr_4th_installment_transaction_id"];
+
+
+        $paidAmount = $firstInstallment + $secondInstallment + $thirdInstallment + $forthInstallment;
+        $remainingAmount = $totalAmount - $paidAmount;
+
+        // Add other relevant fields here
+
+        // Output the retrieved values (for testing purposes)
+        echo "Total Amount: " . $totalAmount . "<br>";
+        echo "Paid Amount: " . $paidAmount . "<br>";
+        echo "Remaining Amount: " . $remainingAmount . "<br>";
+
+        // Close the statement
+        $stmt->close();
+    } else {
+        echo "No payment data found for the provided roll number and year.";
+    }
+} else {
+    echo "Error: Unable to prepare SQL statement.";
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve form inputs
+    $rollNo = $_POST["rollNo"];
+    $year = $_POST["year"];
+
+    if (isset($_POST["totalAmount"])) {
+        $totalAmount = $_POST["totalAmount"];
+    }
+    if (isset($_POST["payment-type"])) {
+        $paymentType = $_POST["payment-type"];
+    }
+    if (isset($_POST["payment-mode"])) {
+        $paymentMode = $_POST["payment-mode"];
+    }
+
+    $transactionId = isset($_POST["transactionId"]) ? $_POST["transactionId"] : null;
+
+    if (isset($_POST["firstInstallment"])) {
+        $firstInstallment = $_POST["firstInstallment"];
+    }
+    if (isset($_POST["secondInstallment"])) {
+        $secondInstallment = $_POST["secondInstallment"];
+    }
+    if (isset($_POST["thirdInstallment"])) {
+        $thirdInstallment = $_POST["thirdInstallment"];
+    }
+    if (isset($_POST["forthInstallment"])) {
+        $forthInstallment = $_POST["forthInstallment"];
+    }
+
+    // Prepare and execute SQL statement to update payment data in the database
+    $sql = "UPDATE payment SET 
+                `1st_year` = ?,
+                `1st_yr_payment_type` = ?,
+                `1st_yr_one_time_payment_timestamp` = NOW(),
+                `1st_yr_one_time_payment_method` = ?,
+                `1st_yr_one_time_payment_transaction_id` = ?,
+                `1st_yr_1st_installment` = ?,
+                `1st_yr_1st_installment_timestamp` = NOW(),
+                `1st_yr_1st_installment_payment_method` = ?,
+                `1st_yr_1st_installment_transaction_id` = ?,
+                `1st_yr_2nd_installment` = ?,
+                `1st_yr_2nd_installment_timestamp` = NOW(),
+                `1st_yr_2nd_installment_payment_method` = ?,
+                `1st_yr_2nd_installment_transaction_id` = ?,
+                `1st_yr_3rd_installment` = ?,
+                `1st_yr_3rd_installment_timestamp` = NOW(),
+                `1st_yr_3rd_installment_payment_method` = ?,
+                `1st_yr_3rd_installment_transaction_id` = ?,
+                `1st_yr_4th_installment` = ?,
+                `1st_yr_4th_installment_timestamp` = NOW(),
+                `1st_yr_4th_installment_payment_method` = ?,
+                `1st_yr_4th_installment_transaction_id` = ?
+            WHERE `ID` = ?";
+    if ($stmt = $con->prepare($sql)) {
+        $stmt->bind_param(
+            "iiisiisiisiisiiss",
+            $totalAmount,
+            $paymentType,
+            $oneTimePaymentMode,
+            $oneTimePaymentTransactionId,
+            $firstInstallment,
+            $firstInstallmentPaymentMode,
+            $firstInstallmentTransactionId,
+            $secondInstallment,
+            $secondInstallmentPaymentMode,
+            $secondInstallmentTransactionId,
+            $thirdInstallment,
+            $thirdInstallmentPaymentMode,
+            $thirdInstallmentTransactionId,
+            $fourthInstallment,
+            $fourthInstallmentPaymentMode,
+            $fourthInstallmentTransactionId,
+            $rollNo
+        );
+        if ($stmt->execute()) {
+            echo "Payment data updated successfully.";
+        } else {
+            echo "Error updating payment data: " . $stmt->error;
+        }
+        $stmt->close();
+    } else {
+        echo "Error: Unable to prepare SQL statement.";
+    }
+}
+
+
+// if ($_SERVER["REQUEST_METHOD"] == "POST") {
+//     // Retrieve form inputs
+//     echo $year;
+
+
+//     if (isset($totalAmount)) {
+//         // Assuming $totalAmount is set elsewhere in your code
+//         $totalAmount = $totalAmount;
+//     }
+
+//     if (isset($paymentType)) {
+//         // Assuming $paymentType is set elsewhere in your code
+//         $paymentType = $paymentType;
+//     }
+
+//     // $totalAmount = $_POST["totalAmount"];
+//     // $paymentType = $_POST["payment-type"];
+//     // $paymentMode = $_POST["payment-mode"];
+//     // $transactionId = isset($_POST["transactionId"]) ? $_POST["transactionId"] : null;
+
+//     // Check which installment amounts are provided and update accordingly
+//     $installments = array("1st_installment", "2nd_installment", "3rd_installment", "4th_installment");
+//     foreach ($installments as $installment) {
+//         if (isset($_POST[$installment])) {
+//             // Prepare and execute SQL statement to update installment data
+//             $sql = "UPDATE payment SET 
+//                         `{$year}_{$installment}` = ?,
+//                         `{$year}_{$installment}_timestamp` = NOW(),
+//                         `{$year}_{$installment}_payment_method` = ?,
+//                         `{$year}_{$installment}_transaction_id` = ?
+//                     WHERE `ID` = ?";
+//                     echo $year;
+//                     echo $installment;
+//             if ($stmt = $con->prepare($sql)) {
+//                 $stmt->bind_param(
+//                     "isss",
+//                     $_POST[$installment],
+//                     $paymentMode,
+//                     $transactionId,
+//                     $rollNo
+//                 );
+//                 if ($stmt->execute()) {
+//                     echo "Installment $installment updated successfully.";
+//                 } else {
+//                     echo "Error updating installment $installment: " . $stmt->error;
+//                 }
+//                 $stmt->close();
+//             } else {
+//                 echo "Error: Unable to prepare SQL statement.";
+//             }
+//         }
+//     }
+
+// Update total amount, payment type, etc. based on your existing logic
+// ...
+
+// Redirect or display a success message after updating all necessary details
+// }
+
+
+
+
+<div class="enter">
+                            <div class="grid">
+                                <input type="radio" name="payment-type" id="once" value="1" <?php if ($paymentType == "1") echo "checked"; ?> onclick="toggleInstallmentContainer()">
+                                <label for="once">One Time Payment</label>
+                            </div>
+                            <div class="grid">
+                                <input type="radio" name="payment-type" id="installment" value="0" <?php if ($paymentType == "0") echo "checked"; ?> onclick="toggleInstallmentContainer()">
+                                <label for="installment">Pay in 4 Installments</label>
+                            </div>
+                        </div>
+
+<div class="container installment" id="oneTimePaymentContainer" <?php if ($paymentType == "1") echo "style='display: flex;'";
+                                                                                else echo "style='display: none;'"; ?>>
+                    <div class="inputBox">
+
+
+<div class="container installment" id="installmentContainer" <?php if ($paymentType == "0") echo "style='display: flex;'";
+                                                                                else echo "style='display: none;'"; ?>>
+                    <div class="inputBox">
+
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve form inputs
+    $rollNo = $_POST["rollNo"];
+    $year = $_POST["year"];
+    if ($_POST["year"] == 1) {
+        $year = "1st_yr";
+    } else if ($_POST["year"] == 2) {
+        $year = "2nd_yr";
+    } else if ($_POST["year"] == 3) {
+        $year = "3rd_yr";
+    }
+
+    $totalAmount = isset($_POST["totalAmount"]) ? $_POST["totalAmount"] : null;
+    $paymentType = isset($_POST["payment-type"]) ? $_POST["payment-type"] : null;
+    $paymentMode = isset($_POST["payment-mode"]) ? $_POST["payment-mode"] : null;
+    $transactionId = isset($_POST["transactionId"]) ? $_POST["transactionId"] : null;
+
+    // Check for installment data
+    $installmentProvided = false;
+    $installments = array("1st_installment", "2nd_installment", "3rd_installment", "4th_installment");
+    foreach ($installments as $installment) {
+        if (isset($_POST[$installment])) {
+            $installmentProvided = true;
+            break;
+        }
+    }
+
+    if ($installmentProvided) {
+        $sql = "UPDATE payment SET 
+                    `{$year}_1st_installment` = ?,
+                    `{$year}_2nd_installment` = ?,
+                    `{$year}_3rd_installment` = ?,
+                    `{$year}_4th_installment` = ?";
+
+        // Update timestamp, payment method, and transaction ID only for the current installment
+        if (isset($_POST['installment'])) {
+            $installment = $_POST['installment'];
+            $sql .= ",
+                    `{$year}_{$installment}_timestamp` = NOW(),
+                    `{$year}_{$installment}_payment_method` = ?,
+                    `{$year}_{$installment}_transaction_id` = ?";
+        }
+
+        $sql .= " WHERE `ID` = ?";
+
+        if ($stmt = $con->prepare($sql)) {
+            // Bind parameters and execute the statement
+            $stmt->bind_param(
+                "iiiiiss",
+                $_POST["1st_installment"],
+                $_POST["2nd_installment"],
+                $_POST["3rd_installment"],
+                $_POST["4th_installment"],
+                $paymentMode,
+                $transactionId,
+                $rollNo
+            );
+            if ($stmt->execute()) {
+                echo "Installments updated successfully.";
+            } else {
+                echo "Error updating installments: " . $stmt->error;
+            }
+            $stmt->close();
+        } else {
+            echo "Error: Unable to prepare SQL statement.";
+        }
+    } else {
+        // One-time payment logic
+        if ($paymentType == 1) {
+            // Insert one-time payment details into the database
+            $sql = "UPDATE payment SET 
+                        `total_amount` = ?,
+                        `one_time_payment_timestamp` = NOW(),
+                        `one_time_payment_method` = ?,
+                        `one_time_transaction_id` = ?
+                    WHERE `ID` = ?";
+
+            if ($stmt = $con->prepare($sql)) {
+                // Bind parameters and execute the statement
+                $stmt->bind_param(
+                    "issi",
+                    $totalAmount,
+                    $paymentMode,
+                    $transactionId,
+                    $rollNo
+                );
+                if ($stmt->execute()) {
+                    echo "One-time payment details updated successfully.";
+                } else {
+                    echo "Error updating one-time payment details: " . $stmt->error;
+                }
+                $stmt->close();
+            } else {
+                echo "Error: Unable to prepare SQL statement.";
+            }
+        } else {
+            echo "Error: No installment data provided.";
+        }
+    }
+}

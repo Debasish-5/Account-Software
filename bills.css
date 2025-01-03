@@ -1,0 +1,481 @@
+.total-students {
+    align-items: center;
+}
+
+.total-payment-details {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 7px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin-bottom: 30px;
+    align-items: center;
+}
+
+.total-payment-details h4 {
+    padding: 7px 15px;
+}
+
+#batch-filter {
+    font-size: 17px;
+    font-weight: bold;
+    padding: 7px 5px;
+    border-radius: 0 7px 7px 0;
+    background-color: rgb(35, 1, 189);
+    color: white;
+    outline: none;
+    border: none;
+    
+}
+
+.filter-section .search-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 7px;
+}
+
+.filter-section .search-bar #search {
+    width: 400px;
+    padding: 7px 15px;
+    outline: none;
+    border: none;
+    border-radius: 7px 0 0 7px;
+    font-size: 16px;
+    font-weight: bolder;
+}
+
+.search-bar i {
+    background-color: white;
+    font-size: 17px;
+    padding: 11px;
+    border-radius: 0 7px 7px 0;
+    cursor: pointer;
+}
+
+#status-filter {
+    outline: none;
+    border: none;
+    padding: 7.5px;
+    font-size: 16px;
+    font-weight: bolder;
+    border-radius: 7px;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+#status-filter:hover {
+    background-color: darkblue;
+    color: white;
+}
+
+select option {
+    padding: 15px 10px;
+    font-size: 15px;
+}
+
+.year {
+    width: 130px;
+    padding: 7px;
+    background-color: white;
+    border-radius: 7px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.year:hover {
+    background-color: darkblue;
+    color: white;
+}
+
+.selected {
+    background-color: rgb(35, 1, 189);
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+
+
+.data-section {
+    background-color: white;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    position: relative;
+}
+
+.data-section table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-section table thead {
+    border-bottom: 1px solid gray;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #ecebeb;
+    /* Lighter gray background for even rows */
+}
+
+tbody tr:nth-child(odd):hover {
+    background-color: #c7c7c7;
+}
+
+/* Apply hover effect */
+tbody tr:hover {
+    background-color: #c7c7c7;
+    /* Light gray background on hover */
+}
+
+th,
+td {
+    text-align: center;
+    padding: 8px;
+}
+
+.update-btn {
+    width: 100%;
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#information h3 {
+    text-align: center;
+    padding: 50px;
+    background-color: white;
+    border-radius: 0 0 10px 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.date-filter {
+    width: auto;
+    font-weight: bold;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+}
+
+.date-filter:hover {
+    background-color: transparent;
+    color: black;
+}
+
+.date-input {
+    padding: 7px 0 6px 15px;
+    background-color: white;
+    color: black;
+    border-radius: 7px 0 0 7px;
+}
+
+.date-filter .date-input input {
+    margin-right: 15px;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+.date-filter .apply-btn {
+    padding: 7px 20px;
+    font-size: 17px;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    background-color: rgb(35, 1, 189);
+    color: white;
+    border-radius: 0 7px 7px 0;
+    cursor: pointer;
+}
+
+.date-filter .apply-btn:hover {
+    background-color: green;
+}
+
+/* ############################################################################################# */
+/* Fines Page */
+.fine-input-container {
+    width: 100%;
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+    padding: 10px 18px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 3px 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.fine-input-fields {
+    width: 100%;
+}
+
+.fine-inputs {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.inputBox {
+    margin: 5px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.inputBox label {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.inputBox input {
+    height: 40px;
+    padding: 0 10px;
+    margin: 8px 0;
+    outline: none;
+    border: 1px solid darkgray;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 900;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s linear;
+    cursor: pointer;
+}
+
+.fine-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 10px;
+}
+
+.left-inputs, .right-inputs {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.checkbox-input {
+    margin-top: 10px;
+}
+
+.checkbox-input label{
+    font-size: 16px;
+    font-weight: bold;
+    margin: auto 6px;
+}
+
+.checkbox-input input{
+    height: 19px;
+    width: 19px;
+}
+
+.checkbox-input .fine-input-details {
+    width: 120px;
+    font-size: 17px;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+    color: blue;
+}
+
+#fine-btn {
+    width: 20%;
+    height: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: rgb(35, 1, 189);
+    color: white;
+    border: none;
+    padding: 5px;
+    margin: 10px 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.fine-table-btn {
+    width: 80px;
+    height: 40px;
+    font-size: 17px;
+    font-weight: bold;
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#billing {
+    background-color: rgb(35, 1, 189);
+}
+
+#billing:disabled {
+    background-color: darkgray;
+}
+
+.paid {
+    background-color: green;
+}
+
+/* Add styles for the modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 280px;
+    top: 0;
+    width: inherit;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 15px;
+    width: 80%;
+}
+
+.modal .inputBox {
+    margin-bottom: 15px;
+}
+
+.modal .inputBox label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.modal .inputBox input,
+.modal .inputBox select {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.modal button {
+    width: 20%;
+    height: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: rgb(35, 1, 189);
+    color: white;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#close-modal-btn {
+    float: right;
+    background-color: red;
+}
+
+/* #################################### Examination Fee Update UI ################################### */
+
+#examination-fee-checkbox {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+/* ######################################### Add Students UI ######################################## */
+
+.table-filter {
+    outline: none;
+    border: none;
+    padding: 7.5px;
+    font-size: 16px;
+    font-weight: bolder;
+    border-radius: 7px;
+    cursor: pointer;
+    box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+}
+
+.table-filter:hover {
+    background-color: darkblue;
+    color: white;
+}
+
+#table-top {
+    margin-bottom: 0;
+    border-bottom: 1px solid black;
+}
+
+.mark-all-students label {
+    font-size: 19px;
+    font-weight: bold;
+    margin: 0 10px;
+}
+
+.mark-all-students #mark-all {
+    width: 19px;
+    height: 19px;
+}
+
+#student-checkbox {
+    width: 19px;
+    height: 19px;
+    vertical-align: middle;
+}
+
+
+
+/* #################################### Printable Format ############################################# */
+@media print {
+    .side-bar {
+        display: none;
+    }
+
+    /* .content .header {
+        display: none;
+    }
+
+    .main-content .total-payment-details, .main-content .total-students {
+        display: none;
+    } */
+
+    .content {
+        width: 100%;
+    }
+
+    .filter-section .search-bar {
+        width: 20%;
+    }
+
+    .filter-section .search-bar #search {
+        text-align: center;
+    }
+
+    .last-column {
+        display: none;
+    }
+
+    .fine-table-btn {
+        background-color: white;
+        color: black;
+    }
+
+    .data-section {
+        box-shadow: none;
+    }
+}

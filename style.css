@@ -1,0 +1,335 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    width: 100%;
+    background-color: rgb(240, 240, 240);
+}
+
+.side-bar {
+    background: black;
+    width: 280px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-radius: 0 2% 2% 0;
+    z-index: 99;
+}
+
+.side-bar .logo-details {
+    font-size: 30px;
+    color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 80px;
+}
+
+.side-bar .logo-details .logo_name {
+    font-size: 22px;
+    color: white;
+    display: flex;
+    align-items: center;
+    margin-left: 12px;
+    font-weight: 600;
+}
+
+.logo-details img {
+    width: 50px;
+    border-radius: 50%;
+    min-width: 40px;
+    line-height: 60px;
+    object-fit: contain;
+}
+
+.side-bar .navlinks {
+    height: 100%;
+    padding-top: 30px;
+    border-radius: 10px;
+}
+
+ul .active {
+    background: rgb(35, 1, 189);
+}
+
+.navlinks li.active {
+    background-color: rgb(35, 1, 189); /* Change to desired background color */
+    color: white; /* Change to desired text color */
+    /* Add any other styles for the active navigation link */
+}
+
+.side-bar .navlinks li {
+    margin: 10px 15px;
+    border-radius: 7px;
+    list-style: none;
+    position: relative;
+    transition: all 0.4s ease;
+}
+
+.side-bar .navlinks li:hover {
+    background: darkblue;
+}
+
+/* Dropdown Button */
+.dropbtn {
+    color: white;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn .bx-caret-down {
+    position: absolute;
+    right: 0px;
+}
+
+/* Dropdown content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    width: 100%;
+    position: absolute;
+    background-color: darkblue;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-top: 1px solid white;
+    border-radius: 0 0 10px 10px;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: rgb(35, 1, 189);
+}
+
+#bottom-batch:hover {
+    border-radius: 0 0 10px 10px;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+
+ul .dropdown:hover {
+    border-radius: 10px 10px 0 0;
+}
+
+.dropdown-content a {
+    justify-content: center;
+}
+
+.side-bar .navlinks li .down-menu {
+    display: flex;
+    align-items: center;
+
+}
+
+.side-bar .navlinks li i {
+    height: 50px;
+    min-width: 78px;
+    text-align: center;
+    line-height: 50px;
+    color: rgb(225, 231, 236);
+    font-size: 25px;
+}
+
+.side-bar .navlinks li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.side-bar .navlinks li a .link-name {
+    font-size: 18px;
+    font-weight: 400;
+    color: aliceblue;
+}
+
+.user-info {
+    position: absolute;
+    bottom: 100px;
+    width: 100%;
+    padding: 30px 10px;
+    border-bottom: 1px solid gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-info .profile {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background: url('https://e7.pngegg.com/pngimages/81/570/png-clipart-profile-logo-computer-icons-user-user-blue-heroes-thumbnail.png') no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin-right: 15px;
+}
+
+.user-info .user-name {
+    color: white;
+}
+
+ul button {
+    position: absolute;
+    bottom: 30px;
+    left: 50%; /* Move the button to the center */
+    transform: translateX(-50%); /* Adjust to center horizontally */
+    font-size: 1.2rem;
+    width: 70%;
+    padding: 6px 0;
+    border: none;
+    border-radius: 10px;
+    background-color: red;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s ease;
+    outline: none;
+    transition: 0.3s ease;
+}
+
+ul button:hover {
+    box-shadow: 0 4px 8px rgba(98, 55, 255, 0.799);
+}
+
+ul button i {
+    margin-right: 20px;
+}
+
+ul button span {
+    padding-left: 20px;
+}
+
+.content {
+    width: calc(100% - 280px);
+    float: right;
+}
+
+.content .header {
+    width: 100%;
+    padding: 12px 20px;
+    background-color: white;
+    box-shadow: rgb(35, 1, 189) 0px 3px 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header button {
+    font-size: 18px;
+    font-weight: bold;
+    background-color: rgb(35, 1, 189);
+    border: none;
+    color: white;
+}
+
+.content .main-content {
+    padding: 30px 15px;
+}
+
+.total-students {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.total-students .box {
+    width: 20%;
+    padding: 15px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.box .logo {
+    height: 45px;
+    width: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo i {
+    font-size: 37px;
+}
+
+.same {
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.24);
+}
+
+.same:hover {
+    box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.24);
+}
+
+
+.bar-graph {
+    width: 100%;
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin-bottom: 20px;
+}
+
+.bar-graph .heading {
+    padding-bottom: 6px;
+    border-bottom: 1px solid gray;
+    margin-bottom: 8px;
+}
+
+.division {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.statistics {
+    width: 40%;
+}
+
+.batch {
+    width: 58%;
+}
+
+/* ######################## Disabled Buttons of All Pages ############################## */
+
+button:disabled {
+    background-color: darkgray;
+}
+
+@media (max-width: 1400px) {
+    .side-bar .logo-details {
+        line-height: 65px;
+    }
+    .side-bar .navlinks {
+        padding-top: 10px;
+    }
+
+    .user-info {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+}
+
+@media print {
+    .side-bar {
+        display: none;
+    }
+}
